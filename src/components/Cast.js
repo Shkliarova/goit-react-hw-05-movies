@@ -10,7 +10,7 @@ export const Cast = () => {
     useEffect(() => {
         const fetchCast = async() => {
             try {
-                const response = await getCastMovie();
+                const response = await getCastMovie(params.movieId);
                 setActors(response.cast);
             } catch (error) {
                 toast.error('Cast not found')

@@ -19,7 +19,7 @@ export default function MoviePage() {
 
         const fetchMovies = async() => {
             try {
-                const movies = await getMovieByQuery();
+                const movies = await getMovieByQuery(query);
                 if(movies.result.length === 0){
                     setMovies([]);
                     return toast.error('Not found');

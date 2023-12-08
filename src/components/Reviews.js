@@ -10,14 +10,14 @@ export const Reviews = () => {
     useEffect(() => {
         const fetchReviews = async() => {
             try {
-                const response = await getReviewsMovie()
+                const response = await getReviewsMovie(params.movieId)
                 setReviews(response.result);
             } catch (error) {
                 toast.error('Something went wrong')
             }
         }
         fetchReviews();
-    }, [params.mvieId])
+    }, [params.movieId])
 
     return(
         <div>
