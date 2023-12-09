@@ -8,34 +8,34 @@ import { MovieList } from "components/MovieList";
 export default function MoviePage() {
 
     const [movies, setMovies] = useState([]);
-    const [params] = useSearchParams();
-
-    const query = params.get('query') ?? '';
+    const [params, setParams] = useSearchParams();
 
     useEffect(() => {
-        if(query === ''){
+        const currentQuery = params.get('query');
+        if(!currentQuery){
             return;
         }
 
         const fetchMovies = async() => {
             try {
-                const movies = await getMovieByQuery(query);
-                if(movies.result.length === 0){
+                const movies = await getMovieByQuery(currentQuery);
+                if(movies.length === 0){
                     setMovies([]);
                     return toast.error('Not found');
                 }
-                setMovies(movies.result)
+                setMovies(movies)
             } catch (error) {
                 toast.error('Something went wrong')
             }
         }
         fetchMovies();
-    }, [query])
+    }, [params])
 
     return (
         <div>
-            <SearchBar query={query}/>
-            {movies.length > 0 ? <MovieList/> : <Toaster/>}
+            <SearchBar setSearchParams={setParams}/>
+            {movies.length > 0 && <MovieList movies={movies}/>} 
+            <Toaster/>
         </div>
     )
 }

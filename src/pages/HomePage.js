@@ -10,7 +10,7 @@ export default function HomePage() {
         const fetchMovies = async() => {
             try {
                 const response = await getTrendingMovies();
-                setMovies(response.result ?? []);
+                setMovies(response ?? []);
             } catch (error) {
                 toast.error('Error!')
             }
@@ -18,14 +18,10 @@ export default function HomePage() {
         fetchMovies();
     }, [])
     return (
-        <div>
-            {movies.length > 0 && (
             <div>
                 <h1>Trending today</h1>
                 <MovieList movies={movies}/>
+                <Toaster/>
             </div>
-        )}
-            <Toaster/>
-        </div>
-    )
+        )
 }

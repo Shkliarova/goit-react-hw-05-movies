@@ -1,10 +1,14 @@
+import { Link, useLocation } from "react-router-dom"
+
 export const MovieList = ({movies}) => {
+    const location = useLocation();
     return(
         <ul>
-            {movies.map(movie => (
-                <li key={movie.id}>
-                    <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='poster'/>
-                    <h2>{movie.title}</h2>
+            {movies.map(({id, title}) => (
+                <li key={id}>
+                    <Link state={{from: location}} to={`/movies/${id}`}>
+                        <h5>{title}</h5>
+                    </Link>
                 </li>
             ))}
         </ul>

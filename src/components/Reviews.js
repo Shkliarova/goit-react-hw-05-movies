@@ -5,32 +5,33 @@ import { useParams } from "react-router-dom";
 
 export const Reviews = () => {
     const [reviews, setReviews] = useState([]);
-    const params = useParams();
+    const {movieId} = useParams();
 
     useEffect(() => {
         const fetchReviews = async() => {
             try {
-                const response = await getReviewsMovie(params.movieId)
-                setReviews(response.result);
+                const response = await getReviewsMovie(movieId)
+                setReviews(response);
             } catch (error) {
-                toast.error('Something went wrong')
+                toast.error('No review')
             }
         }
         fetchReviews();
-    }, [params.movieId])
+    }, [movieId])
 
     return(
         <div>
             {reviews.length > 0 ? (
                 <ul>
-                    {reviews.map(review => (
-                        <li key={review.id}>
-                            <p>Author: {review.author}</p>
-                            <p>{review.content}</p>
+                    {reviews.map(({id, author, content}) => (
+                        <li key={id}>
+                            <p>Author: {author}</p>
+                            <p>{content}</p>
                         </li>
                     ))}
                 </ul>
-            ) : <Toaster/>}
+            ) : <h3>No review...</h3>}
+            <Toaster/>
         </div>
     )
 }

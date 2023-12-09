@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom"
-import { GlobalStyle } from "./GlobalStyled"
+import { Suspense } from "react"
 
 export const AppLayout = () => {
     return(
@@ -16,10 +16,9 @@ export const AppLayout = () => {
                 </ul>
             </nav>
         </header>
-        <main>
-            <Outlet/>
-        </main>
-        <GlobalStyle/>
+            <Suspense fallback={<div>Loading page...</div>}>
+            <Outlet />
+            </Suspense>
     </div>
     )
 }
