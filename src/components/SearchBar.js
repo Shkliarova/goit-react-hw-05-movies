@@ -5,7 +5,7 @@ export const SearchBar = ({setSearchParams}) => {
 
     const updateQuery = (e) => {
         e.preventDefault();
-        setSearchParams({query});
+        setSearchParams({query: query});
     }
 
     const handleSearchParams = ({target: {value}}) => {

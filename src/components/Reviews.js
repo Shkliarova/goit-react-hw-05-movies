@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import toast, {Toaster} from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
-export const Reviews = () => {
+export default function Reviews () {
     const [reviews, setReviews] = useState([]);
     const {movieId} = useParams();
 
@@ -13,7 +13,8 @@ export const Reviews = () => {
                 const response = await getReviewsMovie(movieId)
                 setReviews(response);
             } catch (error) {
-                toast.error('No review')
+                toast.error('Error');
+                setReviews([]);
             }
         }
         fetchReviews();
@@ -25,12 +26,12 @@ export const Reviews = () => {
                 <ul>
                     {reviews.map(({id, author, content}) => (
                         <li key={id}>
-                            <p>Author: {author}</p>
+                            <h3>Author: {author}</h3>
                             <p>{content}</p>
                         </li>
                     ))}
                 </ul>
-            ) : <h3>No review...</h3>}
+            ) : <h4>We don't have any reviews for this movie.</h4>}
             <Toaster/>
         </div>
     )

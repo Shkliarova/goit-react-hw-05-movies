@@ -5,7 +5,7 @@ import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { Suspense } from "react";
 
 export default function MovieDetailsPage() {
-    const [movie, setMovie] = useState('');
+    const [movie, setMovie] = useState(null);
     const location = useLocation();
     const {movieId} = useParams();
 
@@ -26,14 +26,14 @@ export default function MovieDetailsPage() {
     return (
         <div>
             <Link to={backLink}>Go back!</Link>
-            <div>
+            {movie && (<div>
                 <img src={`${movie.poster_path ?
                         'https://image.tmdb.org/t/p/w500/'+ movie.poster_path : 
                         'https://via.placeholder.com/182x273?text=' + movie.original_title}`}
                         alt={movie.original_title}/>
                 <div>
                     <h2>{movie.original_title}</h2>
-                    <h4>Rating: {Math.round(movie.vote_average)}</h4>
+                    <h4>User score: {Math.round(movie.vote_average)*10}%</h4>
                     <h4>Overview</h4>
                     <p>{movie.overview}</p>
                     <h4>Genres</h4>
@@ -44,6 +44,8 @@ export default function MovieDetailsPage() {
                     ))}</ul>
                 </div>
             </div>
+            )}
+            
                 <div>
                 <h3>Additional information</h3>
                 <ul>

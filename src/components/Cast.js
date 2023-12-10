@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import toast, {Toaster} from "react-hot-toast";
 
-export const Cast = () => {
+export default function Cast() {
     const [actors, setActors] = useState([]);
     const {movieId} = useParams();
 
@@ -13,7 +13,8 @@ export const Cast = () => {
                 const response = await getCastMovie(movieId);
                 setActors(response);
             } catch (error) {
-                toast.error('Cast not found')
+                toast.error('Cast not found');
+                setActors([]);
             }
         }
         fetchCast();

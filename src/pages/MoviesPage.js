@@ -13,14 +13,15 @@ export default function MoviePage() {
     useEffect(() => {
         const currentQuery = params.get('query');
         if(!currentQuery){
+            setMovies([]);
             return;
         }
 
         const fetchMovies = async() => {
             try {
                 const movies = await getMovieByQuery(currentQuery);
+                setMovies(movies ?? []);
                 if(movies.length === 0){
-                    setMovies([]);
                     return toast.error('Not found');
                 }
                 setMovies(movies)
