@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom"
-import { AppLayout } from "./AppLayout"
+import { AppLayout } from "./AppLayout/AppLayout"
 import { GlobalStyle } from "./GlobalStyled"
 import { lazy } from "react"
 
-const HomePage = lazy(() => import('../pages/HomePage'));
-const MoviePage = lazy(() => import('../pages/MoviesPage'));
-const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
-const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
-const Cast = lazy(() => import('../components/Cast'));
-const Reviews = lazy(() => import('../components/Reviews'));
+const HomePage = lazy(() => import('../pages/Home/HomePage'));
+const MoviePage = lazy(() => import('../pages/Movies/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('../pages/MovieDetails/MovieDetailsPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFound/NotFoundPage'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
   return (

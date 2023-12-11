@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Input, Button } from "./SearchBar.styled";
 
 export const SearchBar = ({setSearchParams}) => {
     const [query, setQuery] = useState('');
@@ -15,8 +16,8 @@ export const SearchBar = ({setSearchParams}) => {
     return(
         <div>
         <form onSubmit={updateQuery}>
-            <input value={query} type="text" placeholder="Enter name of movie" autoFocus onChange={handleSearchParams}></input>
-            <button type="submit" disabled={!query}>Search</button>
+            <Input value={query} type="text" placeholder="Enter name of the movie" autoFocus onChange={handleSearchParams}></Input>
+            <Button type="submit" disabled={!query}>Search</Button>
         </form>
         </div>
     )

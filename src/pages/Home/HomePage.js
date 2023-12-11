@@ -1,7 +1,8 @@
 import { getTrendingMovies } from "api"
-import { MovieList } from "components/MovieList";
+import { MovieList } from "components/MovieList/MovieList";
 import { useEffect, useState } from "react"
 import toast, { Toaster } from "react-hot-toast";
+import { Title } from "./Home.styled";
 
 export default function HomePage() {
     const [movies, setMovies] = useState([]);
@@ -19,7 +20,7 @@ export default function HomePage() {
     }, [])
     return (
             <div>
-                <h1>Trending today</h1>
+                <Title>Trending today</Title>
                 <MovieList movies={movies}/>
                 <Toaster/>
             </div>

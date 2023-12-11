@@ -2,6 +2,7 @@ import { getReviewsMovie } from "api";
 import { useEffect, useState } from "react";
 import toast, {Toaster} from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { StyledList, ListItem, ReviewsDescr } from "./Reviews.styled";
 
 export default function Reviews () {
     const [reviews, setReviews] = useState([]);
@@ -23,14 +24,16 @@ export default function Reviews () {
     return(
         <div>
             {reviews.length > 0 ? (
-                <ul>
+                <StyledList>
                     {reviews.map(({id, author, content}) => (
-                        <li key={id}>
-                            <h3>Author: {author}</h3>
-                            <p>{content}</p>
-                        </li>
+                        <ListItem key={id}>
+                            <p>
+                                <span>Author:</span> {author}
+                            </p>
+                            <ReviewsDescr>{content}</ReviewsDescr>
+                        </ListItem>
                     ))}
-                </ul>
+                </StyledList>
             ) : <h4>We don't have any reviews for this movie.</h4>}
             <Toaster/>
         </div>

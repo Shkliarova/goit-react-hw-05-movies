@@ -1,9 +1,9 @@
 import { getMovieByQuery } from "api";
-import { SearchBar } from "components/SearchBar";
+import { SearchBar } from "components/SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import toast, {Toaster} from "react-hot-toast";
-import { MovieList } from "components/MovieList";
+import { MovieList } from "components/MovieList/MovieList";
 
 export default function MoviePage() {
 
